@@ -1,0 +1,83 @@
+import java.util.Scanner;
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Estudiantes
+ */
+public class Universidad {
+
+    Profesor vec[] = new Profesor [1];
+    public static Scanner sc = new Scanner (System.in);
+    
+    
+    public void llenarVector ( )
+    {
+        for(int i=0; i<vec.length; i++)
+        {
+            Profesor profe1 = new Profesor();
+            System.out.println("Introduzca el nombre del profesor");
+            profe1.setNombre(sc.next());
+            System.out.println("Introduzca la cantidad de materias");
+            int aux = sc.nextInt();
+            profe1.setCantMaterias(aux);
+            Materia aux1[] = new Materia[aux];
+            for(int j=0; j<aux1.length;j++)
+            {
+                Materia aux2 = new Materia();
+                System.out.println("Introduzca el nombre de la materia");
+                aux2.setNombre(sc.next());
+                System.out.println("Introduzca el numero de horas");
+                aux2.setHorasSem(sc.nextInt());
+                aux1[j]=aux2;
+                
+            }
+            profe1.setMateria(aux1);
+            
+            System.out.println("Introduzca el pago por materia");
+            profe1.setPagoPorMateria(sc.nextInt());
+            System.out.println("Introduzca la condicion");
+            profe1.setCondicion(sc.next());
+            vec[i]=profe1;
+        }
+        
+        
+    }
+    
+    
+    
+    public void validar()
+    {
+        for(int i=0; i<vec.length;i++)
+        {
+            vec[i].verificar();
+        }
+    }
+    
+    public void mostrar ()
+    {
+        for (int i=0; i<vec.length; i++)
+        {
+            System.out.println("El nombre del profesor es: "+vec[i].getNombre()+" dicta: "+vec[i].getCantMaterias()+" materias, por un pago de: "+vec[i].getPagoPorMateria() );
+            System.out.println("Sus materias son: ");
+            Materia aux[]=vec[i].getMateria();
+            for(int j=0; j<vec[i].getMateria().length; j++)
+            {
+                System.out.print(aux[j].getNombre()+" "+aux[j].getHorasSem());
+            }
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+        
+        Universidad unimet = new Universidad();
+        unimet.llenarVector();
+        unimet.mostrar();
+        unimet.validar();
+    }
+}
